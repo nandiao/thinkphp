@@ -1,6 +1,6 @@
 {
-    "name": "topthink/framework",
-    "description": "the new thinkphp framework",
+    "name": "nandiao/thinkphp",
+    "description": "thinkphp 5.1 swoole修改版",
     "type": "think-framework",
     "keywords": [
         "framework",
@@ -17,7 +17,11 @@
         {
             "name": "yunwuxin",
             "email": "448901948@qq.com"
-        }
+        },
+        {
+            "name": "karl",
+            "email": "nandiao@qq.com"
+        }        
     ],
     "require": {
         "php": ">=5.6.0",
