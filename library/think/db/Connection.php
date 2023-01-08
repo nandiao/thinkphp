@@ -183,7 +183,13 @@ abstract class Connection
             $name = md5(serialize($config));
         }
 
-        if (true === $name || !isset(self::$instance[$name])) {
+        $uid = 0;
+        $CoroutineClassName = "Swoole\Coroutine";
+        if (class_exists($CoroutineClassName)) {
+            $uid = $CoroutineClassName::getcid();
+        }
+
+        if (true === $name || !isset(self::$instance[$uid][$name])) {
             if (empty($config['type'])) {
                 throw new InvalidArgumentException('Undefined db type');
             }
@@ -195,10 +201,10 @@ abstract class Connection
                 $name = md5(serialize($config));
             }
 
-            self::$instance[$name] = Loader::factory($config['type'], '\\think\\db\\connector\\', $config);
+            self::$instance[$uid][$name] = Loader::factory($config['type'], '\\think\\db\\connector\\', $config);
         }
 
-        return self::$instance[$name];
+        return self::$instance[$uid][$name];
     }
 
     /**
